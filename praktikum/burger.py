@@ -29,6 +29,8 @@ class Burger:
         self.ingredients.insert(new_index, self.ingredients.pop(index))
 
     def get_price(self) -> float:
+        if self.bun is None:
+            raise ValueError("Бургер не может быть собран без булки")
         price = self.bun.get_price() * 2
 
         for ingredient in self.ingredients:
@@ -37,6 +39,9 @@ class Burger:
         return price
 
     def get_receipt(self) -> str:
+        if self.bun is None:
+            raise ValueError("Бургер не может быть собран без булки")
+
         receipt: List[str] = [f'(==== {self.bun.get_name()} ====)']
 
         for ingredient in self.ingredients:
